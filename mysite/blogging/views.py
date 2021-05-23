@@ -16,7 +16,7 @@ def stub_view(request, *args, **kwargs):
 
 
 def list_view(request):
-    published = Post.objects.exclude(published_date_exact=None)
+    published = Post.objects.exclude(published_date=None)
     posts = published.order_by('-published_date')
     template = loader.get_template('blogging/list.html')
     context = {'posts': posts}
