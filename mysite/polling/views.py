@@ -21,28 +21,8 @@ class PollDetailView(DetailView):
             poll.score += 1
         elif request.POST.get("vote") == "No":
             poll.score -= 1
-        else:
-            raise Http404
         poll.save()
 
         context = {"object": poll}
         return render(request, "polling/detail.html", context)
 
-
-def detail_view(request, poll_id):
-    try:
-        poll = Poll.objects.get(pk=poll_id)
-    except Poll.DoesNotExist:
-        raise Http404
-
-    if request.method == "POST":
-        if request.POST.get("vote") == "Yes":
-            poll.score += 1
-        elif request.POST.get("vote") == "No":
-            poll.score -= 1
-        else:
-            raise Http404
-        poll.save()
-
-    context = {'poll': poll}
-    return render(request, 'polling/detail.html', context)
