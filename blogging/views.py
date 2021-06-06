@@ -29,9 +29,9 @@ def add_model(request):
             # model_instance.published_date = timezone.now()
             model_instance.save()
             return redirect("/")
-        else:
-            form = MyPostForm()
-            return render(request, "add.html", {"form": form})
+    else:
+        form = MyPostForm()
+        return render(request, "add.html", {"form": form})
 
 
 class PostListView(ListView):
